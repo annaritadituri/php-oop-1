@@ -5,8 +5,8 @@ class Movie {
     private string $name;
     private int $year;
     private string $director;
-    private array $originalLangs;
-    private array $genres;
+    private string $originalLang;
+    private string $genre;
     
     function __construct($name)
     {
@@ -38,22 +38,54 @@ class Movie {
 
     //originalLang methods
     public function setOriginalLang(string $originalLang) : void {
-        $this->originalLangs[] = $originalLang;
+        $this->originalLang = $originalLang;
     }
 
-    public function getOriginalLang() : array {
-        return $this->originalLangs;
+    public function getOriginalLang() : string {
+        return $this->originalLang;
     }
 
     //genres methods
-    public function setGenres(string $genre) : void {
-        $this->genres[] = $genre;
+    public function setGenre(string $genre) : void {
+        $this->genre = $genre;
     }
 
-    public function getGenres() : array {
-        return $this->genres;
+    public function getGenre() : string {
+        return $this->genre;
     }
 
 };
+
+//first object
+$movie_1 = new Movie('Il padrino');
+$movie_1->getName();
+
+$movie_1->setYear(1972);
+$movie_1->getYear();
+
+$movie_1->setDirector('Francis Ford Coppola');
+$movie_1->getDirector();
+
+$movie_1->setOriginalLang('inglese');
+$movie_1->getOriginalLang();
+
+$movie_1->setGenre('gangster');
+$movie_1->getGenre();
+
+//second object
+$movie_2 = new Movie("I predatori dell'arca perduta");
+$movie_2->getName();
+
+$movie_2->setYear(1981);
+$movie_2->getYear();
+
+$movie_2->setDirector('Steven Spielberg');
+$movie_2->getDirector();
+
+$movie_2->setOriginalLang('inglese');
+$movie_2->getOriginalLang();
+
+$movie_2->setGenre('avventura');
+$movie_2->getGenre();
 
 ?>
