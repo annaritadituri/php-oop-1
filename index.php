@@ -89,3 +89,64 @@ $movie_2->setGenre('avventura');
 $movie_2->getGenre();
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies OOP</title>
+</head>
+<body>
+
+    <h1>Movies</h1>
+    <ul>
+        <li>
+
+            <?php echo $movie_1->getName(); ?>
+
+            <ul>
+
+                <li>
+                    <?php echo $movie_1->getYear(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_1->getDirector(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_1->getOriginalLang(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_1->getGenre(); ?>
+                </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+
+            <?php echo $movie_2->getName(); ?>
+
+            <ul>
+
+                <li>
+                    <?php echo $movie_2->getYear(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_2->getDirector(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_2->getOriginalLang(); ?>
+                </li>
+                <li>
+                    <?php echo $movie_2->getGenre(); ?>
+                </li>
+
+            </ul>
+
+        </li>
+    </ul>
+
+</body>
+</html>
