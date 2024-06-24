@@ -8,9 +8,13 @@ class Movie {
     private string $originalLang;
     private string $genre;
     
-    function __construct($name)
-    {
+    function __construct($name) {
+
+        if(is_int($name)) {
+            throw new Exception();
+        };
         $this->name = $name;
+
     }
 
     //name methods
@@ -56,8 +60,15 @@ class Movie {
 
 };
 
+try {
+    $movie_1 = new Movie(5);
+} catch(Exception $e) {
+    echo 'Devi inserire una stringa. Riprova:';
+    $movie_1 = new Movie('Il padrino');
+}
+
 //first object
-$movie_1 = new Movie('Il padrino');
+//$movie_1 = new Movie('Il padrino');
 $movie_1->getName();
 
 $movie_1->setYear(1972);
