@@ -1,67 +1,14 @@
 <?php
 
-class Movie {
+require_once __DIR__ . '/Models/Movie.php';
 
-    private string $name;
-    private int $year;
-    private string $director;
-    private array $originalLangs = [];
-    private array $genres = [];
-    
-    function __construct($name) {
-
-        if(is_int($name)) {
-            throw new Exception();
-        };
-        $this->name = $name;
-
-    }
-
-    //name methods
-    public function getName() : string {
-        return $this->name;
-    }
-
-    //year methods
-    public function setYear(int $year) : void {
-        $this->year = $year;
-    }
-
-    public function getYear() : int {
-        return $this->year;
-    }
-
-    //director methods
-    public function setDirector(string $director) : void {
-        $this->director = $director;
-    }
-
-    public function getDirector() : string {
-        return $this->director;
-    }
-
-    //originalLang methods
-    public function setOriginalLang(string $originalLang) : void {
-        $this->originalLangs[] = $originalLang;
-    }
-
-    public function getOriginalLangs() : array {
-        return $this->originalLangs;
-    }
-
-    //genres methods
-    public function setGenre(string $genre) : void {
-        $this->genres[] = $genre;
-    }
-
-    public function getGenres() : array {
-        return $this->genres;
-    }
-
-};
+$genre_1 = new Genre('gangster');
+$genre_2 = new Genre('commedia');
+$actor_1 = new Actor('Marlon Brando');
+$actor_2 = new Actor('Harrison Ford');
 
 try {
-    $movie_1 = new Movie('Il padrino');
+    $movie_1 = new Movie('Il padrino', $genre_1, $actor_1);
 } catch(Exception $e) {
     echo 'Devi inserire una stringa. Riprova:';
 }
@@ -80,13 +27,14 @@ $movie_1->setOriginalLang('inglese');
 $movie_1->setOriginalLang('italiano');
 $movie_1->getOriginalLangs();
 
-$movie_1->setGenre('noir');
+$movie_1->setGenreClass(new Genre('noir'));
 $movie_1->setGenre('drammatico');
-$movie_1->setGenre('gangster');
 $movie_1->getGenres();
 
+$movie_1->setActor('Al Pacino');
+
 //second object
-$movie_2 = new Movie("I predatori dell'arca perduta");
+$movie_2 = new Movie("I predatori dell'arca perduta", $genre_2, $actor_2);
 $movie_2->getName();
 
 $movie_2->setYear(1981);
@@ -101,8 +49,10 @@ $movie_2->getOriginalLangs();
 $movie_2->setGenre('avventura');
 $movie_2->setGenre('azione');
 $movie_2->setGenre('fantastico');
-$movie_2->setGenre('commedia');
 $movie_2->getGenres();
+var_dump($movie_2->getGenres());
+
+$movie_2->setActorClass(new Actor('Karen Allen'));
 
 $moviesList = [$movie_1, $movie_2];
 
@@ -144,6 +94,11 @@ $moviesList = [$movie_1, $movie_2];
                                 foreach ($movie->getGenres() as $genre) echo $genre . " "
                             ?>
                         </li>
+                        <li>
+                            <?php 
+                                foreach ($movie->getActors() as $actor) echo $actor . " "
+                            ?>
+                        </li>
 
                     </ul>
 
@@ -151,7 +106,7 @@ $moviesList = [$movie_1, $movie_2];
 
             <?php endforeach;
         ?>
-        
+
     </ul>
 
 </body>
