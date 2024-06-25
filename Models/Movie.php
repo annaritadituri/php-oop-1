@@ -5,6 +5,9 @@ require_once __DIR__ . '/Actor.php';
 
 class Movie {
 
+    public static int $currentIndex = 1;
+
+    private int $id;
     private string $name;
     private int $year;
     private string $director;
@@ -20,12 +23,18 @@ class Movie {
             throw new Exception();
         };
 
+        $this->id = self::$currentIndex++; 
         $this->name = $name;
         $this->genre = $genre;
         $this->genres[] = $this->genre;
         $this->actor = $actor;
         $this->actors[] = $this->actor;
 
+    }
+
+    //id method
+    public function getId() : int {
+        return $this->id;
     }
 
     //name methods

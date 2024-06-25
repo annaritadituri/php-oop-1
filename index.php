@@ -16,6 +16,7 @@ try {
 //first object
 //$movie_1 = new Movie('Il padrino');
 $movie_1->getName();
+$movie_1->getId();
 
 $movie_1->setYear(1972);
 $movie_1->getYear();
@@ -36,6 +37,7 @@ $movie_1->setActor('Al Pacino');
 //second object
 $movie_2 = new Movie("I predatori dell'arca perduta", $genre_2, $actor_2);
 $movie_2->getName();
+$movie_2->getId();
 
 $movie_2->setYear(1981);
 $movie_2->getYear();
@@ -74,7 +76,7 @@ $moviesList = [$movie_1, $movie_2];
 
                 <li>
 
-                    <?php echo $movie->getName(); ?>
+                    <?php echo $movie->getName() . ' <strong>[id: ' . $movie->getId() . ']</strong>'; ?>
 
                     <ul>
 
