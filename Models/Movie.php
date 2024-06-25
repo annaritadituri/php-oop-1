@@ -9,8 +9,8 @@ class Movie {
     private int $year;
     private string $director;
     private array $originalLangs;
-    private $genre;
-    private $actor;
+    private ? Genre $genre = null;
+    private ? Actor $actor = null;
     private array $genres = [];
     private array $actors = [];
     
@@ -22,9 +22,9 @@ class Movie {
 
         $this->name = $name;
         $this->genre = $genre;
-        $this->genres[] = $this->genre->getName();
+        $this->genres[] = $this->genre;
         $this->actor = $actor;
-        $this->actors[] = $this->actor->getName();
+        $this->actors[] = $this->actor;
 
     }
 
@@ -61,8 +61,13 @@ class Movie {
     }
 
     //Genre methods
-    public function setGenreClass(Genre $genre) : void {
-        $this->genres[] = $genre->getName();
+    public function setGenreClass(? Genre $genre) : void {
+        $this->genre = $genre;
+        $this->genres[] = $this->genre;
+    }
+
+    public function getGenreClass() : ? Genre {
+        return $this->genre;
     }
 
     //genres methods
@@ -70,7 +75,7 @@ class Movie {
         $this->genres[] = $genre;
     }
 
-    public function getGenres() {
+    public function getGenres() : array {
         return $this->genres;
     }
 
@@ -79,12 +84,16 @@ class Movie {
         $this->actors[] = $actor->getName();
     }
 
+    public function getActorClass() : ? Actor {
+        return $this->actor;
+    }
+
     //actors methods
     public function setActor(string $actor) : void {
         $this->actors[] = $actor;
     }
 
-    public function getActors() {
+    public function getActors() : array {
         return $this->actors;
     }
 

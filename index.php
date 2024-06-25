@@ -46,11 +46,11 @@ $movie_2->getDirector();
 $movie_2->setOriginalLang('inglese');
 $movie_2->getOriginalLangs();
 
-$movie_2->setGenre('avventura');
+$movie_2->setGenreClass(new Genre ('avventura'));
+$movie_2->getGenreClass();
 $movie_2->setGenre('azione');
 $movie_2->setGenre('fantastico');
 $movie_2->getGenres();
-var_dump($movie_2->getGenres());
 
 $movie_2->setActorClass(new Actor('Karen Allen'));
 
@@ -91,12 +91,34 @@ $moviesList = [$movie_1, $movie_2];
                         </li>
                         <li>
                             <?php 
-                                foreach ($movie->getGenres() as $genre) echo $genre . " "
+                                foreach ($movie->getGenres() as $genre) {
+
+                                    if(is_string($genre)) {
+                                        echo $genre . " ";
+                                    } else {
+
+                                        if(is_null($genre)) {
+                                            echo " ";
+                                        } else {
+                                            echo $genre->getName() . " ";
+                                        }
+                                
+                                    }
+                                }
+                                
                             ?>
                         </li>
                         <li>
                             <?php 
-                                foreach ($movie->getActors() as $actor) echo $actor . " "
+                                foreach ($movie->getActors() as $actor) {
+
+                                    if(is_string($actor)) {
+                                        echo $actor . " ";
+                                    } else {
+                                        echo $actor->getName() . " ";
+                                    }
+
+                                }
                             ?>
                         </li>
 
