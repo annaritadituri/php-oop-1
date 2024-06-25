@@ -5,8 +5,8 @@ class Movie {
     private string $name;
     private int $year;
     private string $director;
-    private string $originalLang;
-    private string $genre;
+    private array $originalLangs = [];
+    private array $genres = [];
     
     function __construct($name) {
 
@@ -42,29 +42,28 @@ class Movie {
 
     //originalLang methods
     public function setOriginalLang(string $originalLang) : void {
-        $this->originalLang = $originalLang;
+        $this->originalLangs[] = $originalLang;
     }
 
-    public function getOriginalLang() : string {
-        return $this->originalLang;
+    public function getOriginalLangs() : array {
+        return $this->originalLangs;
     }
 
     //genres methods
     public function setGenre(string $genre) : void {
-        $this->genre = $genre;
+        $this->genres[] = $genre;
     }
 
-    public function getGenre() : string {
-        return $this->genre;
+    public function getGenres() : array {
+        return $this->genres;
     }
 
 };
 
 try {
-    $movie_1 = new Movie(5);
+    $movie_1 = new Movie('Il padrino');
 } catch(Exception $e) {
     echo 'Devi inserire una stringa. Riprova:';
-    $movie_1 = new Movie('Il padrino');
 }
 
 //first object
@@ -78,10 +77,13 @@ $movie_1->setDirector('Francis Ford Coppola');
 $movie_1->getDirector();
 
 $movie_1->setOriginalLang('inglese');
-$movie_1->getOriginalLang();
+$movie_1->setOriginalLang('italiano');
+$movie_1->getOriginalLangs();
 
+$movie_1->setGenre('noir');
+$movie_1->setGenre('drammatico');
 $movie_1->setGenre('gangster');
-$movie_1->getGenre();
+$movie_1->getGenres();
 
 //second object
 $movie_2 = new Movie("I predatori dell'arca perduta");
@@ -94,10 +96,15 @@ $movie_2->setDirector('Steven Spielberg');
 $movie_2->getDirector();
 
 $movie_2->setOriginalLang('inglese');
-$movie_2->getOriginalLang();
+$movie_2->getOriginalLangs();
 
 $movie_2->setGenre('avventura');
-$movie_2->getGenre();
+$movie_2->setGenre('azione');
+$movie_2->setGenre('fantastico');
+$movie_2->setGenre('commedia');
+$movie_2->getGenres();
+
+$moviesList = [$movie_1, $movie_2];
 
 ?>
 
@@ -112,51 +119,39 @@ $movie_2->getGenre();
 
     <h1>Movies</h1>
     <ul>
-        <li>
-
-            <?php echo $movie_1->getName(); ?>
-
-            <ul>
+        <?php
+            foreach ($moviesList as $movie) : ?>
 
                 <li>
-                    <?php echo $movie_1->getYear(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_1->getDirector(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_1->getOriginalLang(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_1->getGenre(); ?>
-                </li>
 
-            </ul>
+                    <?php echo $movie->getName(); ?>
 
-        </li>
+                    <ul>
 
-        <li>
+                        <li>
+                            <?php echo $movie->getYear(); ?>
+                        </li>
+                        <li>
+                            <?php echo $movie->getDirector(); ?>
+                        </li>
+                        <li>
+                            <?php 
+                                foreach ($movie->getOriginalLangs() as $lang) echo $lang . " "
+                            ?>
+                        </li>
+                        <li>
+                            <?php 
+                                foreach ($movie->getGenres() as $genre) echo $genre . " "
+                            ?>
+                        </li>
 
-            <?php echo $movie_2->getName(); ?>
+                    </ul>
 
-            <ul>
-
-                <li>
-                    <?php echo $movie_2->getYear(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_2->getDirector(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_2->getOriginalLang(); ?>
-                </li>
-                <li>
-                    <?php echo $movie_2->getGenre(); ?>
                 </li>
 
-            </ul>
-
-        </li>
+            <?php endforeach;
+        ?>
+        
     </ul>
 
 </body>
